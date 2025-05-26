@@ -1,0 +1,2 @@
+git clone https://www.modelscope.cn/Qwen/Qwen3-1.7B.git
+
