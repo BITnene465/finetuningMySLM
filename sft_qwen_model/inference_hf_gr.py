@@ -90,6 +90,7 @@ def generate_response(model, tokenizer, user_input, chat_history=None, system_pr
         messages,
         tokenize=False,
         add_generation_prompt=True, 
+        enable_thinking=False,  # important!! disable thinking mode(no train for this)
     )
     
     model_inputs = tokenizer([text], return_tensors="pt").to(model.device)

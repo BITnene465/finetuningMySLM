@@ -11,12 +11,13 @@ MODEL_NAME = "Qwen3-1.7B"
 BASE_DIR = "."
 TRAIN_DATA_PATH = os.path.join(BASE_DIR, "sharegpt_data/haruhi_train.jsonl")
 DEV_DATA_PATH = os.path.join(BASE_DIR, "sharegpt_data/haruhi_dev.jsonl") 
-OUTPUT_DIR = os.path.join(BASE_DIR, "qwen3_haruhi_lora")
+RUN_NAME = "qwen3_haruhi_lora"
+OUTPUT_DIR = os.path.join(BASE_DIR, "runs", RUN_NAME)
 SYSTEM_PROMPT = None  # dataset has its own system prompt !!!
 
 # dataset class -- sharegpt 2 qwen format
 class ShareGPTDataset(Dataset):
-    def __init__(self, data_path, tokenizer, system_prompt=None, max_length=4096):
+    def __init__(self, data_path, tokenizer, system_prompt=None, max_length=2048):
         self.tokenizer = tokenizer
         self.max_length = max_length
         self.system_prompt = system_prompt
