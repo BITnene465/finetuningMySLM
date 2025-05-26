@@ -67,14 +67,22 @@ class ShareGPTDataset(Dataset):
         for turn in conversations:
             if turn['from'] == 'system':
                 role = "system"
+                messages.append({"role": role, "content": turn['value']})
             elif turn['from'] == 'human':
                 role = "user"
+                messages.append({"role": role, "content": turn['value']})
             elif turn['from'] == 'gpt':
                 role = "assistant"
+                # thinking_content = turn.get('think', '')    
+                # messages.append({"role": role, 
+                #                  "content": f"<think>{thinking_content}\n</think>\n{turn['value']}"})  
+                # NOTE: no thinking mode same as inference
+                
+                messages.append({"role": role, "content": turn['value']})
             else:
                 raise ValueError(f"Unknown role in conversation: {turn['from']}")
-            messages.append({"role": role, "content": turn['value']})
 
+        # NOTE：该方法会清除掉除了最后一个回复的内容中的 思考部分
         # Tokenize the entire conversation using the chat template
         tokenized_output = self.tokenizer.apply_chat_template(
             messages,
