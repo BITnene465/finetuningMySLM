@@ -1,2 +1,8 @@
+# download qwen3 model
 git clone https://www.modelscope.cn/Qwen/Qwen3-1.7B.git
 
+# download lccc datasets
+git clone https://huggingface.co/datasets/silver/lccc
+
+# download ms-swift
+pip install "ms-swift[llm]==2.5.1"
