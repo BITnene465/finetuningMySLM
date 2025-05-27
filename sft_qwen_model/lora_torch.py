@@ -75,7 +75,7 @@ class ShareGPTDataset(Dataset):
                 role = "assistant"
                 # thinking_content = turn.get('think', '')    
                 # messages.append({"role": role, 
-                #                  "content": f"<think>{thinking_content}\n</think>\n{turn['value']}"})  
+                #                  "content": f"<think>\n{thinking_content}\n</think>\n{turn['value']}"})  
                 # NOTE: no thinking mode same as inference
                 
                 messages.append({"role": role, "content": turn['value']})
