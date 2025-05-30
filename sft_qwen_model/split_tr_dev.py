@@ -9,7 +9,7 @@ def split_data(input_file, train_file, dev_file, split_ratio=0.9):
         input_file (str): Path to the input JSONL file.
         train_file (str): Path to save the training data.
         dev_file (str): Path to save the development data.
-        split_ratio (float): Ratio of data to be used for training (e.g., 0.9 for 90%).
+        split_ratio (float): Ratio of data to be used for training
     """
     data = []
     with open(input_file, 'r', encoding='utf-8') as f:

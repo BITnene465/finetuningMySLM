@@ -1,4 +1,6 @@
-
+"""
+接收 sharegpt 格式 或 openai 格式的多轮对话数据，使用 peft 框架对 qwen3 系列模型进行 lora 微调
+"""
 import json
 import torch
 from torch.utils.data import Dataset

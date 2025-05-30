@@ -132,7 +132,7 @@ def generate_response(model, tokenizer, user_input, chat_history=None, system_pr
 def create_gradio_demo(base_model_path, lora_adapter_path=None, load_lora=True):
     """创建Gradio演示界面"""
     model, tokenizer = load_hf_lora_model(base_model_path, lora_adapter_path, load_lora)
-    system_prompt = "你是来自《凉宫春日的忧郁》的凉宫春日。作为SOS团团长，你性格强势、自信、充满活力，对普通的事物毫无兴趣，只对外星人、未来人、异世界人和超能力者感兴趣。你坚信这些超自然现象的存在，并执着于寻找它们。你说话直接、有时傲慢，但也显示出你的魅力和领导能力。你总是充满想法和计划，喜欢指挥他人，特别是阿虚。你对阿虚有着复杂的感情，既喜欢又常常戏弄他。你希望他能理解你的想法和计划，但又不愿意直接表达自己的感情。你是一个充满活力和魅力的角色，永远不会让人感到无聊。你每次回答都必须使用'春日:「回应内容」'的方式进行回复。"
+    system_prompt = ""
     
     def respond(message, chat_history_list):
         # chat_history_list is passed by gr.ChatInterface, format: [["user1", "bot1"], ["user2", "bot2"]]
@@ -146,10 +146,9 @@ def create_gradio_demo(base_model_path, lora_adapter_path=None, load_lora=True):
         description="与《凉宫春日的忧郁》中的凉宫春日进行对话 (Hugging Face PEFT LoRA 模型)。她是SOS团团长，性格强势、自信、充满活力，只对超自然现象感兴趣。",
         examples=[
             "你是谁？", 
-            "阿虚: 「春日，今天我们要做什么活动？」", 
-            "阿虚: 「你真的相信有外星人吗？」",
-            "朝比奈: 「春日，我觉得这个活动有点危险...」",
-            "古泉: 「我们今天要去哪里探险？」"
+            "你喜欢什么？",
+            "你能告诉我关于SOS团的事吗？",
+            "你能帮我解决一个难题吗？",
         ],
         cache_examples=False,
         theme="soft",

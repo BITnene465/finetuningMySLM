@@ -1,29 +1,34 @@
-# Qwen 模型微调与 ChatHaruhi 数据集处理
+# Qwen 模型微调 实现角色扮演
 
-本项目演示了如何使用 ChatHaruhi 数据集微调 Qwen 模型。
+通过微调 Qwen3 系列模型，实现富有个性且有固定风格的 chatbot
 
 ## 主要流程
 
-1.  **下载 Qwen 模型:**
+###  下载 Qwen 模型
     首先，克隆 Qwen 模型仓库到本地。 （保证 git lfs 已经下载）
     ```bash
     git clone https://www.modelscope.cn/Qwen/Qwen3-1.7B.git
     ```
+    根据需求可以选择更大的模型，qwen3系列均可。
 
-2.  **下载 ChatHaruhi 数据集:**
-    下载 ChatHaruhi 数据集，其中包含了角色扮演对话数据。
-    ```bash
-    
-    ```
+### 在 lccc 上训练
+用于提升模型的多轮对话能力和拟人化能力。
+首先将 lccc 数据集转换为脚本能够处理的 sharegpt 格式，jsonl文件
+运行以下脚本（会自动下载 lccc-base 数据集（需要梯子））
+```bash
+# 提取 训练集样本
+python convert_lccc_to_sharegpt.py --dataset_name lccc-base --split train --seed 114514 --max_samples 40000 --output_file lccc_base_train_sample_40k.jsonl
 
-3.  **数据预处理:**
+# 提取验证集
+python convert_lccc_to_sharegpt.py --dataset_name lccc-base --split validation --output_file lccc_base_validation.jsonl
+```
+
+###  **数据预处理:**
     使用 `extract_dailogue.ipynb` 脚本从原始数据集中提取对话。打开并运行此 Jupyter Notebook 中的所有单元格以生成处理后的数据。
 
-4.  **划分数据集：**
     `split_tr_dev.py`: 用于切分训练集和开发集。
     在脚本里面更改参数
 
-5.  **模型微调:**
     使用 `lora_torch.py` 脚本对 Qwen 模型进行 LoRA 微调。
     ```bash
     python lora_torch.py 
@@ -31,13 +36,13 @@
     请根据 `lora_torch.py` 脚本的实际需求**填写必要的参数**。
     如果要微调其他模型可以更改脚本的中代码，Qwen3 系列均可行。
 
-6.  **(可选) 合并 LoRA权重:**
+###  **(可选) 合并 LoRA权重:**
     如果需要将 LoRA 权重合并到基础模型中，可以使用 `merge_lora_weights.py` 脚本。
     ```bash
     python merge_lora_weights.py --base_model_path ./Qwen3-1.7B --lora_model_path  ./runs/qwen3_haruhi_lora/final_lora_adapter --output_path merged_qwen3_haruhi
     ```
 
-7.  **(可选) 推理:**
+### **(可选) 推理:**
     使用 `inference_hf_gr.py` 脚本进行推理，该脚本可能带有一个 Gradio 界面。
     ```bash
     python inference_hf_gr.py --base_model_path ./Qwen3-1.7B --lora_model_path runs/qwen3_haruhi_lora/final_lora_adapter

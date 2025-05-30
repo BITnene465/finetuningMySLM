@@ -23,4 +23,5 @@ swift sft \
     --warmup_ratio 0.05 \
     --dataloader_num_workers 4 \
     --model_author Bitnene465 \
+    --output_dir ms_runs/qwen3-1.7b-lora-haruhi \
     --model_name qwen3-1.7b-lora-haruhi \
