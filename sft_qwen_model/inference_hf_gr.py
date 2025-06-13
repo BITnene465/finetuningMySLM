@@ -142,8 +142,8 @@ def create_gradio_demo(base_model_path, lora_adapter_path=None, load_lora=True):
     demo = gr.ChatInterface(
         fn=respond,
         chatbot=gr.Chatbot(height=600, label="聊天框"),
-        title="凉宫春日 AI - HF LoRA (Qwen 微调)",
-        description="与《凉宫春日的忧郁》中的凉宫春日进行对话 (Hugging Face PEFT LoRA 模型)。她是SOS团团长，性格强势、自信、充满活力，只对超自然现象感兴趣。",
+        title=" AI - HF LoRA (Qwen 微调)",
+        description="",
         examples=[
             "你是谁？", 
             "你喜欢什么？",

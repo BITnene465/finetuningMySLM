@@ -23,6 +23,8 @@ python convert_lccc_to_sharegpt.py --dataset_name lccc-base --split train --seed
 python convert_lccc_to_sharegpt.py --dataset_name lccc-base --split validation --output_file lccc_base_validation.jsonl
 ```
 
+修改 `lora_torch.py` 中的相关配置变量，在该训练集和验证集上微调 Qwen-1.7B 模型
+
 ###  **数据预处理:**
     使用 `extract_dailogue.ipynb` 脚本从原始数据集中提取对话。打开并运行此 Jupyter Notebook 中的所有单元格以生成处理后的数据。
 
@@ -45,7 +47,7 @@ python convert_lccc_to_sharegpt.py --dataset_name lccc-base --split validation -
 ### **(可选) 推理:**
     使用 `inference_hf_gr.py` 脚本进行推理，该脚本可能带有一个 Gradio 界面。
     ```bash
-    python inference_hf_gr.py --base_model_path ./Qwen3-1.7B --lora_model_path runs/qwen3_haruhi_lora/final_lora_adapter
+    python inference_hf_gr.py --base_model_path ./Qwen3-1.7B --lora_adapter_path runs/qwen3_haruhi_lora/final_lora_adapter
     ```
 
 ## 其他脚本
